@@ -14,6 +14,7 @@ readonly VLLM_SPECULATIVE_CONFIG_SITE=/usr/local/lib/python3.12/dist-packages/vl
 readonly VLLM_LLAMA_EAGLE3_SITE=/usr/local/lib/python3.12/dist-packages/vllm/model_executor/models/llama_eagle3.py
 readonly VLLM_LLAMA_SITE=/usr/local/lib/python3.12/dist-packages/vllm/model_executor/models/llama.py
 readonly VLLM_ATTENTION_LAYER_SITE=/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/attention.py
+readonly VLLM_ROCM_AITER_FA_SITE=/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/rocm_aiter_fa.py
 readonly VLLM_AITER_UNIFIED_ATTN_SITE=/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/rocm_aiter_unified_attn.py
 readonly VLLM_MINIMAX_M3_WARMUP_SITE=/usr/local/lib/python3.12/dist-packages/vllm/model_executor/warmup/minimax_m3_msa_warmup.py
 readonly AITER_SPARSE_ATTN_SITE=/usr/local/lib/python3.12/dist-packages/aiter/ops/sparse_attention.py
@@ -72,6 +73,7 @@ export HUGGINGFACE_HUB_CACHE="$HF_HUB_CACHE"
 export TRANSFORMERS_CACHE="$HF_HUB_CACHE"
 export TMPDIR="$LOCAL_RUNTIME_ROOT/tmp"
 export VLLM_CACHE_ROOT="$LOCAL_RUNTIME_ROOT/home/.cache/vllm"
+export AITER_JIT_DIR="${AITER_JIT_DIR:-$LOCAL_RUNTIME_ROOT/home/.aiter/jit}"
 export AIPERF_DATASET_MMAP_CACHE_DIR="$LOCAL_RUNTIME_ROOT/traces"
 export AIPERF_RUNTIME_DIR="$LOCAL_RUNTIME_ROOT/runs/$run_label"
 export AIPERF_VENV="$AIPERF_RUNTIME_DIR/venv"
@@ -199,6 +201,15 @@ if [[ -n "${VLLM_AITER_UNIFIED_ATTN_OVERLAY:-}" ]]; then
         --mount "$VLLM_AITER_UNIFIED_ATTN_OVERLAY/rocm_aiter_unified_attn.py:$VLLM_AITER_UNIFIED_ATTN_SITE"
     )
 fi
+if [[ -n "${VLLM_ROCM_AITER_FA_OVERLAY:-}" ]]; then
+    if [[ ! -f "$VLLM_ROCM_AITER_FA_OVERLAY/rocm_aiter_fa.py" ]]; then
+        echo "Error: incomplete AITER FA vLLM overlay: $VLLM_ROCM_AITER_FA_OVERLAY" >&2
+        exit 2
+    fi
+    EXTRA_ENROOT_MOUNT_ARGS+=(
+        --mount "$VLLM_ROCM_AITER_FA_OVERLAY/rocm_aiter_fa.py:$VLLM_ROCM_AITER_FA_SITE"
+    )
+fi
 if [[ -n "${VLLM_MINIMAX_M3_WARMUP_OVERLAY:-}" ]]; then
     if [[ ! -f "$VLLM_MINIMAX_M3_WARMUP_OVERLAY/minimax_m3_msa_warmup.py" ]]; then
         echo "Error: incomplete MiniMax-M3 warmup overlay: $VLLM_MINIMAX_M3_WARMUP_OVERLAY" >&2
@@ -290,6 +301,11 @@ fi
     )"
     printf 'container_registry_digest=%s\n' 'sha256:bb44b39aea26798cce43030a98bf48efd0322ca7147367db86e38b96bd80f0e7'
     printf 'container_name=%s\n' "$CONTAINER_NAME"
+    printf 'vllm_exact_source_sha=%s\n' "${VLLM_EXACT_SOURCE_SHA:-none}"
+    printf 'vllm_integration_source_sha=%s\n' \
+        "${VLLM_INTEGRATION_SOURCE_SHA:-none}"
+    printf 'vllm_dependency_heads=%s\n' "${VLLM_DEPENDENCY_HEADS:-none}"
+    printf 'aiter_exact_source_sha=%s\n' "${AITER_EXACT_SOURCE_SHA:-none}"
     printf 'model_revision=%s\n' "$MODEL_REVISION"
     printf 'draft_model_revision=%s\n' "$DRAFT_MODEL_REVISION"
     printf 'conc=%s\n' "$CONC"
@@ -333,6 +349,8 @@ fi
     printf 'vllm_eagle3_overlay=%s\n' "${VLLM_EAGLE3_OVERLAY:-none}"
     printf 'vllm_aiter_unified_attn_overlay=%s\n' \
         "${VLLM_AITER_UNIFIED_ATTN_OVERLAY:-none}"
+    printf 'vllm_rocm_aiter_fa_overlay=%s\n' \
+        "${VLLM_ROCM_AITER_FA_OVERLAY:-none}"
     if [[ -n "${VLLM_AITER_UNIFIED_ATTN_OVERLAY:-}" ]]; then
         printf 'vllm_aiter_unified_attn_sha256=%s\n' "$(
             sha256sum \
@@ -375,6 +393,8 @@ fi
     printf 'aiter_config_gemm_bf16=%s\n' "${AITER_CONFIG_GEMM_BF16:-auto}"
     printf 'aiter_config_fmoe=%s\n' "${AITER_CONFIG_FMOE:-auto}"
     printf 'agentx_power=%s\n' "$ENABLE_AGENTX_POWER"
+    printf 'apply_archived_patches=%s\n' \
+        "${MINIMAX_M3_APPLY_ARCHIVED_PATCHES:-1}"
 } | tee "$RESULT_DIR/run-metadata.txt"
 
 ENROOT_ENV_KEYS=(
@@ -397,6 +417,7 @@ for optional_key in \
     KV_OFFLOAD_BACKEND KV_OFFLOAD_BACKEND_METADATA MAX_CUDAGRAPH_CAPTURE_SIZE \
     DISABLE_SPECULATIVE_DECODING TARGET_ATTENTION_BACKEND DRAFT_ATTENTION_BACKEND \
     VLLM_AITER_UNIFIED_ATTN_OVERLAY \
+    VLLM_ROCM_AITER_FA_OVERLAY \
     VLLM_ROCM_AITER_UNIFIED_ATTN_QUANT_QUERY \
     VLLM_ROCM_AITER_UNIFIED_ATTN_QUANT_OUTPUT \
     VLLM_ROCM_AITER_UNIFIED_ATTN_KERNEL \
@@ -409,7 +430,10 @@ for optional_key in \
     AITER_CONFIG_FMOE \
     INDEXER_KV_DTYPE KV_CACHE_DTYPE VLLM_USE_BREAKABLE_CUDAGRAPH \
     AITER_SPARSE_PRECOMPILE MAX_MODEL_LEN \
-    VLLM_MINIMAX_M3_FUSED_CACHE_INSERT PYTHONPATH \
+    VLLM_MINIMAX_M3_FUSED_CACHE_INSERT PYTHONPATH AITER_META_DIR \
+    VLLM_EXACT_SOURCE_SHA VLLM_INTEGRATION_SOURCE_SHA \
+    VLLM_DEPENDENCY_HEADS AITER_EXACT_SOURCE_SHA \
+    MINIMAX_M3_APPLY_ARCHIVED_PATCHES \
     VLLM_MINIMAX_M3_AITER_FUSED_AR_GEMMA \
     VLLM_MINIMAX_M3_ROCM_FP32_ROUTER_GEMM \
     VLLM_MINIMAX_M3_AGENTX_JIT_WARMUP VLLM_MINIMAX_M3_WARMUP_OVERLAY \

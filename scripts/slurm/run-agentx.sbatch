@@ -14,6 +14,7 @@
 set -euo pipefail
 
 readonly shared_root="${AGENTX_SHARED_ROOT:-/shared/data/R7N/andy_luo_3v7/minimaxm3-agentx}"
+readonly runner="${AGENTX_RUNNER_PATH:-$shared_root/run-agentx.sh}"
 
 hostname
 date -Is
@@ -42,6 +43,6 @@ export AIPERF_EXPERIMENTAL_FAST="${AIPERF_EXPERIMENTAL_FAST:-1}"
 
 readonly local_runner="/tmp/minimaxm3-agentx-runner-${SLURM_JOB_ID}.sh"
 install -m 0700 \
-    "$shared_root/run-agentx.sh" \
+    "$runner" \
     "$local_runner"
 exec "$local_runner"

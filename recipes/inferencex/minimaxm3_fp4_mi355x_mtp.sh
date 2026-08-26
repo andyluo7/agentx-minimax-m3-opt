@@ -163,11 +163,14 @@ fi
 
 # Synthetic acceptance standardizes throughput against the committed golden
 # EAGLE3-GQA curve. Accuracy evals use real target verification.
-if [ "${EVAL_ONLY}" = "true" ]; then
-    SPEC_CONFIG="{\"method\": \"eagle3\", \"model\": \"$DRAFT_MODEL_PATH\", \"num_speculative_tokens\": $NUM_SPEC_TOKENS, \"attention_backend\": \"ROCM_AITER_UNIFIED_ATTN\", \"draft_attention_window\": 32768}"
-else
-    SPEC_CONFIG="{\"method\": \"eagle3\", \"model\": \"$DRAFT_MODEL_PATH\", \"num_speculative_tokens\": $NUM_SPEC_TOKENS, \"attention_backend\": \"ROCM_AITER_UNIFIED_ATTN\", \"draft_attention_window\": 32768, \"rejection_sample_method\": \"synthetic\", \"synthetic_acceptance_length\": $SYNTHETIC_ACCEPT_LEN}"
+SPEC_CONFIG="{\"method\": \"eagle3\", \"model\": \"$DRAFT_MODEL_PATH\", \"num_speculative_tokens\": $NUM_SPEC_TOKENS, \"attention_backend\": \"ROCM_AITER_UNIFIED_ATTN\""
+if [[ "${DRAFT_ATTENTION_WINDOW:-32768}" != "none" ]]; then
+    SPEC_CONFIG+=", \"draft_attention_window\": ${DRAFT_ATTENTION_WINDOW:-32768}"
 fi
+if [ "${EVAL_ONLY}" != "true" ]; then
+    SPEC_CONFIG+=", \"rejection_sample_method\": \"synthetic\", \"synthetic_acceptance_length\": $SYNTHETIC_ACCEPT_LEN"
+fi
+SPEC_CONFIG+="}"
 SPECULATIVE_ARGS=(--speculative-config "$SPEC_CONFIG")
 
 echo "Starting vllm server..."
@@ -189,7 +192,7 @@ export VLLM_ROCM_AITER_UNIFIED_ATTN_QUANT_OUTPUT=1
 export VLLM_ROCM_AITER_UNIFIED_ATTN_KERNEL=aiter
 export VLLM_ROCM_AITER_UNIFIED_ATTN_CACHE_WRITER=aiter
 export AITER_UNIFIED_ATTN_SLIDING_DECODE_3D=1
-export VLLM_MINIMAX_M3_FUSED_CACHE_INSERT=1
+export VLLM_MINIMAX_M3_FUSED_CACHE_INSERT="${VLLM_MINIMAX_M3_FUSED_CACHE_INSERT:-1}"
 export VLLM_MINIMAX_M3_AITER_FUSED_AR_GEMMA=1
 export VLLM_MINIMAX_M3_ROCM_FP32_ROUTER_GEMM=0
 export VLLM_MINIMAX_M3_AGENTX_JIT_WARMUP=1
@@ -203,11 +206,21 @@ KV_CACHE_DTYPE=fp8
 MAX_CUDAGRAPH_CAPTURE_SIZE=512
 ATTENTION_CONFIG_ARGS=(--attention-config '{"indexer_kv_dtype":"fp8"}')
 
-bash "$(dirname "$0")/apply_minimaxm3_agentx_patches.sh"
-AITER_ROOT="$(python3 -c 'import importlib.util as u, os; print(os.path.dirname(os.path.dirname(u.find_spec("aiter").origin)))')"
-export AITER_FUSED_CACHE_INSERT_OVERLAY="$AITER_ROOT/aiter_meta"
-export PYTHONPATH="$AITER_FUSED_CACHE_INSERT_OVERLAY${PYTHONPATH:+:$PYTHONPATH}"
-python3 "$(dirname "$0")/precompile_minimaxm3_aiter.py" --max-model-len 1048576
+if [[ "${MINIMAX_M3_APPLY_ARCHIVED_PATCHES:-1}" == "1" ]]; then
+    bash "$(dirname "$0")/apply_minimaxm3_agentx_patches.sh"
+    AITER_ROOT="$(python3 -c 'import importlib.util as u, os; print(os.path.dirname(os.path.dirname(u.find_spec("aiter").origin)))')"
+    export AITER_FUSED_CACHE_INSERT_OVERLAY="$AITER_ROOT/aiter_meta"
+    export PYTHONPATH="$AITER_FUSED_CACHE_INSERT_OVERLAY${PYTHONPATH:+:$PYTHONPATH}"
+    python3 "$(dirname "$0")/precompile_minimaxm3_aiter.py" --max-model-len 1048576
+else
+    python3 - <<'PYEOF'
+import aiter
+import vllm
+
+print(f"current_head_vllm_module={vllm.__file__}")
+print(f"current_head_aiter_module={aiter.__file__}")
+PYEOF
+fi
 
 VLLM_CMD=(
     vllm serve "$MODEL_PATH"

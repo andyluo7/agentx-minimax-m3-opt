@@ -5,6 +5,10 @@ Primary entry points:
 - `run-agentx.sh`: host-side Enroot runner and provenance recorder.
 - `container-run-agentx.sh`: container-side recipe/evaluation wrapper.
 - `slurm/run-agentx.sbatch`: AAC17 eight-GPU exclusive allocation wrapper.
+- `slurm/pr52664-exact-head-tests.sbatch`: pinned MI355X focused pytest for the
+  vLLM #52664 helper and AITER #4787 heads, using a `uv`-managed `.venv`.
+- `submit-pr52664-current-head.sh`: dependency-gated focused-test, smoke,
+  full-GSM8K, C1, and C32-offload validation chain for vLLM #52664.
 - `submit-full-indexer-complete-curve.sh`: submits C1/C5/C10 resident and
   C15/C20/C25/C30/C32 vLLM-simple offload points across three nodes.
 - `submit-gsm8k.sh`: submits the full real-target GSM8K correctness job.

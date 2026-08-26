@@ -57,6 +57,9 @@ than synthetic acceptance. The preserved 1,319/1,319 GSM8K run scored
   regeneration instructions.
 - `docs/UPSTREAM_PRS.md`: live status snapshot and dependency/landing order for
   the focused vLLM and AITER PRs replacing the archived patches.
+- `docs/PR_52664_REVIEW_PACKET.md`: exact AITER gates, focused tests,
+  non-duplication analysis, DCO blockers, and current-head MI355X validation
+  requirements for vLLM #52664.
 - `docs/OPTIMIZATIONS.md`: explanation of the winning stack and rejected paths.
 - `SHA256SUMS`: integrity manifest for every tracked evidence file.
 
