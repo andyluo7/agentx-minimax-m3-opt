@@ -10,7 +10,7 @@ validation are complete.
 ## Proposed head
 
 - Helper branch: `andyluo7/vllm:fix/pr-52664-aiter-gates`
-- Commit: `16c5a20643e93f0ab5cf364c59bfcb0a90d72b2c`
+- Commit: `ee5f001be6454bc9616dcf0db9e4276efe1387c6`
 - Base: vLLM #52849 commit
   `78e1f096add72ec2816eab5da08cba221260142b`
 - AITER dependency: #4787 commit
@@ -65,15 +65,25 @@ The helper adds or extends tests for:
 - speculative decode and padded graph rows; and
 - emitted sparse page-table parity against the reference builders.
 
-Local changed-file validation at `16c5a20643e9`:
+Local changed-file validation at `ee5f001be645`:
 
 ```text
 pre-commit run --files <all eight changed Python files>: PASS
 git diff --check: PASS
 ```
 
-The local macOS checkout does not have Torch, so runtime pytest is performed in
-the pinned ROCm image on MI355X using a `uv`-managed `.venv`.
+MI355X focused validation job 1604 used the pinned ROCm image and a
+`uv`-managed `.venv`. It passed:
+
+```text
+tests/kernels/attention/test_minimax_m3_indexer_selection.py: 19 passed
+selected test_minimax_m3.py AITER/page-table cases: 4 passed
+```
+
+The GPU tests build their model configuration locally and make no Hugging Face
+network request. The exact logs are
+`upstream-validation/logs/pr52664-tests-1604.{out,err}` on the shared AAC17
+filesystem.
 
 ## Dependency status
 
@@ -81,7 +91,7 @@ the pinned ROCm image on MI355X using a `uv`-managed `.venv`.
 | --- | --- | --- | --- |
 | AITER #4787 | `cb3c7a628645` | Open, non-draft, mergeable; full AITER gate green | Maintainer review and merge |
 | vLLM #52849 | `78e1f096add7` | Open, approved, mergeable; pre-commit and AMD CI green | Human authors must repair DCO history |
-| vLLM #52664 | `92b66b2bdf03` | Draft on the old head | Replace/rebase with the helper after dependencies are ready |
+| vLLM #52664 | `92b66b2bdf03` | Draft on the old head; DCO also includes the unsigned dependency history | Replace/rebase with the signed helper after dependencies are ready |
 
 The invalid #52849 commits are:
 
@@ -91,7 +101,10 @@ The invalid #52849 commits are:
 
 The authors must rewrite or attest their own commits. A later empty signed
 commit does not repair DCO, and another contributor must not forge their
-sign-offs.
+sign-offs. The helper's single integration commit has a valid Andy Luo sign-off
+and explicit Cursor/OpenAI Codex attribution; it removes #52664's own unsigned
+commit from the proposed history, but #52849 still has to repair its history or
+merge before #52664 can become DCO-clean against `main`.
 
 ## Non-duplication
 
@@ -106,8 +119,8 @@ alternatives rather than additive dependencies.
 
 The focused test and benchmark chain is pinned as follows:
 
-- vLLM #52664 helper: `16c5a20643e9`;
-- validation integration head: `6ff993f99eaf`;
+- vLLM #52664 helper: `ee5f001be645`;
+- validation integration head: `720d05565afb`;
 - vLLM #53695: `9e7aa17a16eb`;
 - vLLM #53821: `251d3d14d778`;
 - AITER #4787: `cb3c7a628645`;
@@ -117,11 +130,12 @@ The focused test and benchmark chain is pinned as follows:
 
 The dependency-gated Slurm chain is:
 
-1. focused exact-head pytest;
-2. eight-sample real-target smoke;
-3. full 1,319-sample GSM8K;
-4. matched 3,600-second AgentX C1; and
-5. matched 3,600-second AgentX C32 with vLLM simple CPU KV offload.
+1. focused exact-head pytest: job 1604, passed;
+2. eight-sample real-target smoke: job 1611, queued for node 1;
+3. full 1,319-sample GSM8K: job 1612, `afterok:1611`;
+4. matched 3,600-second AgentX C1: job 1613, `afterok:1612`; and
+5. matched 3,600-second AgentX C32 with vLLM simple CPU KV offload: job 1614,
+   `afterok:1613`.
 
 Every promoted result must preserve source, image, config, effective command,
 request accounting, raw artifacts, exit status, and warmup exclusion. It must

@@ -10,7 +10,7 @@ it generally reflects draft/review/check requirements.
 
 | PR | Change | Head | Lifecycle status | Dependency |
 |---|---|---|---|---|
-| [vLLM #53821](https://github.com/vllm-project/vllm/pull/53821) | Preserve ROCm unified-attention query metadata during CUDA-graph replay | `17cccfedac8a` | **Draft / Open** | Independent correctness prerequisite |
+| [vLLM #53821](https://github.com/vllm-project/vllm/pull/53821) | Preserve ROCm unified-attention query metadata during CUDA-graph replay | `251d3d14d778` | **Open** | Independent correctness prerequisite |
 | [vLLM #53827](https://github.com/vllm-project/vllm/pull/53827) | Bounded Llama EAGLE3 draft attention with full draft-KV retention | `641376f8f069` | **Draft / Open** | Pairs with AITER #5004 for intended MI355X efficiency |
 | [AITER #5004](https://github.com/ROCm/aiter/pull/5004) | gfx950 live-window 3-D unified-attention optimization | `adcda0d3a8a6` | **Draft / Open** | Based on merged AITER #4918; performance companion to vLLM #53827 |
 | [vLLM #53833](https://github.com/vllm-project/vllm/pull/53833) | Integrate AITER fused MiniMax-M3 cache insertion | `2cb93a03ebf8` | **Draft / Open** | Requires AITER #4813; rebase after vLLM #52664 |
@@ -20,9 +20,9 @@ it generally reflects draft/review/check requirements.
 | PR | Role | Head | Lifecycle status | Relationship |
 |---|---|---|---|---|
 | [AITER #4787](https://github.com/ROCm/aiter/pull/4787) | Lightning-indexer score/top-k kernels | `cb3c7a628645` | **Open** | Required by vLLM #52664 |
-| [vLLM #52849](https://github.com/vllm-project/vllm/pull/52849) | AITER sparse paged attention for MiniMax-M3 MTP/dense layers | `148cce51cd75` | **Open**, approved | vLLM #52664 must be rebased onto it/current main |
+| [vLLM #52849](https://github.com/vllm-project/vllm/pull/52849) | AITER sparse paged attention for MiniMax-M3 MTP/dense layers | `78e1f096add7` | **Open**, approved; DCO blocked | vLLM #52664 is rebased onto this exact head |
 | [vLLM #52664](https://github.com/vllm-project/vllm/pull/52664) | AITER lightning-indexer integration | `92b66b2bdf03` | **Draft / Open** | Requires AITER #4787 and vLLM #52849 |
-| [AITER #4813](https://github.com/ROCm/aiter/pull/4813) | Fused QK-norm, RoPE, and cache-insert kernel | `266922c417ce` | **Draft / Open**, conflicts | Required by vLLM #53833; clean helper rebase is `andyluo7/aiter:rebase/minimaxm3-fused-cache-insert` at `08587c2c0` |
+| [AITER #4813](https://github.com/ROCm/aiter/pull/4813) | Fused QK-norm, RoPE, and cache-insert kernel | `266922c417ce` | **Open**, conflicts | Required by vLLM #53833; clean helper rebase is `andyluo7/aiter:rebase/minimaxm3-fused-cache-insert` at `08587c2c0` |
 | [vLLM #53695](https://github.com/vllm-project/vllm/pull/53695) | KV-connector support for ROCm AITER unified attention | `9e7aa17a16eb` | **Open** | Required for C15-C32 `SimpleCPUOffloadConnector` points |
 | [vLLM #47270](https://github.com/vllm-project/vllm/pull/47270) | Fused input all-reduce plus Gemma RMSNorm | `f53708556e0f` | **Draft / Open** | Independent performance component |
 | [vLLM #49170](https://github.com/vllm-project/vllm/pull/49170) | Generic AITER unified-attention warmup | `2de511e91424` | **Open**, conflicts | Reuse after rebase; sparse-PA warmup still needs recipe coverage |

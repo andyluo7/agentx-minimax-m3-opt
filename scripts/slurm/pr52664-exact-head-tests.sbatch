@@ -16,7 +16,7 @@ set -euo pipefail
 
 readonly shared_root=/shared/data/R7N/andy_luo_3v7/minimaxm3-agentx
 readonly validation_root="$shared_root/upstream-validation"
-readonly vllm_sha=16c5a20643e93f0ab5cf364c59bfcb0a90d72b2c
+readonly vllm_sha=ee5f001be6454bc9616dcf0db9e4276efe1387c6
 readonly aiter_sha=cb3c7a628645dd9b03610d36b543d39225e2cde5
 readonly vllm_root="$validation_root/vllm-${vllm_sha:0:12}"
 readonly aiter_root="$validation_root/aiter-${aiter_sha:0:12}"
@@ -97,6 +97,7 @@ srun \
         bash -lc '
             set -euo pipefail
             uv venv --system-site-packages "$VLLM_TEST_VENV"
+            uv pip install --python "$VLLM_TEST_VENV/bin/python" tblib==3.1.0
             "$VLLM_TEST_VENV/bin/python" - <<"PY"
 import aiter
 import vllm

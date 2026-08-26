@@ -11,8 +11,8 @@ readonly slurm_account="${SLURM_ACCOUNT:-r7n}"
 readonly slurm_partition="${SLURM_PARTITION:-256C8G1H_MI355X_Ubuntu24}"
 readonly slurm_reservation="${SLURM_RESERVATION:-aac17_vultr-mi355x-1_vultr-mi355x-2_vultr-mi355x-3_vultr-mi355x-4_vultr-mi355x-5_vultr-mi355x-6_reservation}"
 
-readonly pr_sha=16c5a20643e93f0ab5cf364c59bfcb0a90d72b2c
-readonly integration_sha=6ff993f99eaf826699709c2e18b843514878e0ed
+readonly pr_sha=ee5f001be6454bc9616dcf0db9e4276efe1387c6
+readonly integration_sha=720d05565afb12f9a812607b1618a18973db11bc
 readonly aiter_sha=cb3c7a628645dd9b03610d36b543d39225e2cde5
 readonly vllm_root="$validation_root/vllm-${integration_sha:0:12}"
 readonly aiter_root="$validation_root/aiter-${aiter_sha:0:12}"
