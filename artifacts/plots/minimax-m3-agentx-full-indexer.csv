@@ -1,0 +1,34 @@
+series,hardware,concurrency,tensor_parallel,kv_offload,p90_e2e_normalized_interactivity_tok_s_user,p90_raw_interactivity_tok_s_user,p90_tpot_ms,total_throughput_tok_s_chip,successful_requests,measured_errors,post_profile_jit_events,source
+New MI355X,mi355x,1,4,none,110.13732000,234.24967000,4.27000000,4324.51085000,248,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-resident-v19-tp4-c1-full-indexer-complete-curve-20260825-r1/mtp-k4-aiter-full-indexer-resident-v19-tp4-c1-full-indexer-complete-curve-20260825-r1.json
+New MI355X,mi355x,5,4,none,118.63063000,175.99448000,5.68000000,7707.12558000,635,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-resident-v19-tp4-c5-full-indexer-complete-curve-20260825-r1/mtp-k4-aiter-full-indexer-resident-v19-tp4-c5-full-indexer-complete-curve-20260825-r1.json
+New MI355X,mi355x,10,4,none,112.32127000,159.79038000,6.26000000,15685.24936000,1487,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-resident-v19-tp4-c10-full-indexer-complete-curve-20260825-r1/mtp-k4-aiter-full-indexer-resident-v19-tp4-c10-full-indexer-complete-curve-20260825-r1.json
+New MI355X,mi355x,15,4,vllm-simple,93.39649000,134.11096000,7.46000000,20764.88786000,2390,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-vllm-simple-v23-tp4-c15-full-indexer-complete-curve-20260825-r2/mtp-k4-aiter-full-indexer-vllm-simple-v23-tp4-c15-full-indexer-complete-curve-20260825-r2.json
+New MI355X,mi355x,20,4,vllm-simple,78.01346000,108.70267000,9.20000000,30078.33753000,2861,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c20-full-indexer-complete-curve-20260825-r1/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c20-full-indexer-complete-curve-20260825-r1.json
+New MI355X,mi355x,25,4,vllm-simple,65.01424000,89.82926000,11.13000000,37459.34595000,3574,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c25-full-indexer-complete-curve-20260825-r1/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c25-full-indexer-complete-curve-20260825-r1.json
+New MI355X,mi355x,30,4,vllm-simple,55.81140000,72.81742000,13.73000000,41315.11798000,3887,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c30-full-indexer-complete-curve-20260825-r1/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c30-full-indexer-complete-curve-20260825-r1.json
+New MI355X,mi355x,32,4,vllm-simple,48.69310000,64.13323000,15.59000000,43683.38852000,3961,0,0,artifacts/performance/full-indexer-curve/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c32-full-indexer-complete-curve-20260825-r1/mtp-k4-aiter-full-indexer-vllm-simple-v19-tp4-c32-full-indexer-complete-curve-20260825-r1.json
+Current public MI355X,mi355x,1,4,off,32.10710663,,,2115.26933000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,2,4,off,42.48738115,,,2352.29437000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,4,4,off,30.55053110,,,3170.30237000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,5,4,off,31.90148167,,,3827.48011000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,8,4,off,31.21990379,,,6910.74070000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,10,4,off,30.90447505,,,8513.83714000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,12,4,off,30.09887791,,,8986.21782000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,15,4,off,28.13106675,,,10532.44145000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,20,4,off,20.04492103,,,13427.12253000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,24,4,off,19.01347205,,,16722.47868000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,28,4,off,17.34015768,,,17098.87051000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,32,4,lmcache,7.43513057,,,14183.29107000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+Current public MI355X,mi355x,40,4,lmcache,1.52409703,,,7613.80671000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31558297538/attempts/1
+B200 reference,b200,1,4,off,108.20716691,,,5251.61068000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,5,4,off,121.80734537,,,8669.50665000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,10,4,off,119.02760087,,,16428.44312000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,15,4,vllm-simple,101.70428127,,,22004.09899000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,20,4,vllm-simple,64.64352930,,,32071.84593000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,25,4,vllm-simple,61.13116270,,,40482.83406000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,30,4,vllm-simple,45.26699608,,,42239.93529000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,32,4,vllm-simple,28.65534353,,,44143.89608000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,34,4,vllm-simple,22.19340894,,,42829.15647000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,36,4,vllm-simple,16.55427700,,,42985.40299000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,38,4,vllm-simple,15.92094080,,,42530.91618000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1
+B200 reference,b200,40,4,vllm-simple,15.18376141,,,42069.14655000,,,,https://github.com/SemiAnalysisAI/InferenceX/actions/runs/31833401868/attempts/1

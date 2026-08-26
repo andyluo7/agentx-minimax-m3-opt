@@ -1,0 +1,565 @@
+{
+  "trace_count": 4,
+  "paths": [
+    "artifacts/profile-eagle3-l3-aiter-cg-metadata-fix-real-target-936/torch-profiler/dp0_pp0_tp0_dcp0_ep0_rank0.1787404527835219716.pt.trace.json.gz",
+    "artifacts/profile-eagle3-l3-aiter-cg-metadata-fix-real-target-936/torch-profiler/dp0_pp0_tp1_dcp0_ep1_rank1.1787404527830050144.pt.trace.json.gz",
+    "artifacts/profile-eagle3-l3-aiter-cg-metadata-fix-real-target-936/torch-profiler/dp0_pp0_tp2_dcp0_ep2_rank2.1787404527836927503.pt.trace.json.gz",
+    "artifacts/profile-eagle3-l3-aiter-cg-metadata-fix-real-target-936/torch-profiler/dp0_pp0_tp3_dcp0_ep3_rank3.1787404527836255975.pt.trace.json.gz"
+  ],
+  "mean_total_kernel_ms_per_trace": 125.81292650000009,
+  "max_total_kernel_ms": 127.13576299999998,
+  "family_ms": {
+    "moe": 27.26674999999993,
+    "other": 22.931996750000028,
+    "dense_gemm": 20.32992899999998,
+    "collective": 18.827074750000033,
+    "attention": 10.966154999999997,
+    "sparse_attention": 9.114156999999981,
+    "norm_rope_cache": 5.224001750000004,
+    "copy_cast": 5.083270999999999,
+    "indexer": 3.4340779999999977,
+    "memory": 2.244835999999999,
+    "quantization": 0.39067725000000003
+  },
+  "kernels": [
+    {
+      "name": "void wvSplitK_hf_sml_<__hip_bfloat16, 64, 2, 16, 8, 2, 4>(int, int, int, int, int, int, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16*, int, int)",
+      "mean_ms_per_trace": 14.988164750000037,
+      "mean_calls_per_trace": 1632.0,
+      "mean_us_per_call": 9.18392447916669,
+      "family": "dense_gemm"
+    },
+    {
+      "name": "_ZN5aiter30allreduce_fusion_kernel_1stageIDF16bDF16bLi4ELb1EEEvPNS_8RankDataENS_11RankSignalsEPNS_6SignalEiPT_S7_PT0_S7_PfiiiifS7_",
+      "mean_ms_per_trace": 14.059743750000042,
+      "mean_calls_per_trace": 1440.0,
+      "mean_us_per_call": 9.76371093750003,
+      "family": "collective"
+    },
+    {
+      "name": "_ZN7ck_tile6kentryILi2ENS_15MoeFlatmmKernelINS_33GemmSpatiallyLocalTilePartitionerINS_13TileGemmShapeINS_8sequenceIJLi16ELi128ELi256EEEENS4_IJLi1ELi4ELi1EEEENS4_IJLi16ELi16ELi32EEEELb0ELb0EEELi1ELi1EEENS_38F16xMXF4FlatmmPipelineAGmemBGmemCRegV1INS_29F16xMXF4FlatmmPipelineProblemIDF16bNS_16pk_float4_e2m1_tEfS8_NS_23TileGemmUniversalTraitsILb0ELb0ELb0ELb0ENS_13tensor_layout4gemm8RowMajorENSF_11ColumnMajorESG_Lb0ELb0ELb0ELi1ELb1ELi16ELNS_21DataCachePrefetchKindE0ELSI_0ELb0ELb0EEELNS_21GemmPipelineSchedulerE0ELb1ELNS_10TailNumberE1ELNS_25amd_buffer_coherence_enumE2ELb0EDF16bEENS_34F16xMXF4FlatmmPipelineAgBgCrPolicyEEENS_16CShuffleEpilogueINS_23CShuffleEpilogueProblemIDF16bDF16bNS_5tupleIJEEEfDF16bST_SG_NS_12element_wise11PassThroughELi16ELi128ELi1ELi4ELi16ELi16ELi32ELb0ELi1ELb0ELi1ELi2ELb0EvvLb0EfDF16bEEvEELNS_13MoeFlatmmKindE3ENS_3moe7MoeSiluEEEJNS11_19MoeFlatmmKernelArgsINS_18FlatmmScalePointerILi1ELi32ENS_11e8m0_bexp_tEEES15_NS13_ILin1ELi0EfEEEEEEEvDpT1_",
+      "mean_ms_per_trace": 12.213246750000009,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 17.855623903508786,
+      "family": "moe"
+    },
+    {
+      "name": "kernel_unified_attention_2d",
+      "mean_ms_per_trace": 8.859086,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 738.2571666666666,
+      "family": "attention"
+    },
+    {
+      "name": "_ZN7ck_tile6kentryILi2ENS_15MoeFlatmmKernelINS_33GemmSpatiallyLocalTilePartitionerINS_13TileGemmShapeINS_8sequenceIJLi16ELi128ELi256EEEENS4_IJLi1ELi4ELi1EEEENS4_IJLi16ELi16ELi32EEEELb0ELb0EEELi1ELi1EEENS_38F16xMXF4FlatmmPipelineAGmemBGmemCRegV1INS_29F16xMXF4FlatmmPipelineProblemIDF16bNS_16pk_float4_e2m1_tEfS8_NS_23TileGemmUniversalTraitsILb0ELb0ELb0ELb0ENS_13tensor_layout4gemm8RowMajorENSF_11ColumnMajorESG_Lb0ELb0ELb0ELi1ELb1ELi16ELNS_21DataCachePrefetchKindE0ELSI_0ELb0ELb0EEELNS_21GemmPipelineSchedulerE0ELb1ELNS_10TailNumberE0ELNS_25amd_buffer_coherence_enumE2ELb0EDF16bEENS_34F16xMXF4FlatmmPipelineAgBgCrPolicyEEENS_16CShuffleEpilogueINS_23CShuffleEpilogueProblemIDF16bDF16bNS_5tupleIJEEEfDF16bST_SG_NS_12element_wise11PassThroughELi16ELi128ELi1ELi4ELi16ELi16ELi32ELb0ELi1ELb0ELi1ELi2ELb0EvvLb0EfDF16bEEvEELNS_13MoeFlatmmKindE2ENS_3moe7MoeSiluEEEJNS11_19MoeFlatmmKernelArgsINS_18FlatmmScalePointerILi1ELi32ENS_11e8m0_bexp_tEEES15_NS13_ILin1ELi0EfEEEEEEEvDpT1_",
+      "mean_ms_per_trace": 6.157769250000017,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 9.002586622807042,
+      "family": "moe"
+    },
+    {
+      "name": "Cijk_Alik_Bljk_S_B_Bias_HA_S_SAV_UserArgs_MT16x16x64_MI16x16x1_SN_LDSB0_AFC0_AFEM1_AFEM1_ASEM1_CLR1_CADS0_DTLA0_DTLB0_DTVA0_DTVB0_EPS0_FDSI0_GRPM1_GRVWA4_GRVWB4_GSU0_GSUAMB_GLS0_ISA950_IU1_K1_LDSTI0_LBSPPA256_LBSPPB256_LBSPPM0_LPA8_LPB8_LPM0_LRVW4_LWPMn1_MIAV0_MIWT1_1_MO40_NTn1_NTA4_NTB0_NTC0_NTD0_NTM0_NEPBS0_NLCA1_NLCB1_ONLL1_PGR2_PLR1_PKA1_SIA3_SS1_SPO0_SRVW0_SSO0_SVW1_SK3_SKFTR0_SKXCCM8_TLDS1_ULSGRO0_USL1_UIOFGRO0_USFGRO0_VSn1_VWA1_VWB1_WSGRA0_WSGRB0_WS64_WG16_4_4",
+      "mean_ms_per_trace": 5.452365999999996,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 7.971295321637421,
+      "family": "other"
+    },
+    {
+      "name": "paged_attention_decode_sliding_window_head_1",
+      "mean_ms_per_trace": 5.291549499999994,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 7.736183479532155,
+      "family": "sparse_attention"
+    },
+    {
+      "name": "void aiter::opus_moe_sorting_entry<aiter::MoeSortingKernel<aiter::MoeSortingProblemEx<int, float, 1, true, false, false, true, 0> >, aiter::MoeSortingKernel<aiter::MoeSortingProblemEx<int, float, 1, true, false, false, true, 0> >::Kargs>(aiter::MoeSortingKernel<aiter::MoeSortingProblemEx<int, float, 1, true, false, false, true, 0> >::Kargs)",
+      "mean_ms_per_trace": 5.039958499999985,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 7.368360380116937,
+      "family": "moe"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::bfloat16tofloat32_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda(c10::BFloat16)#1}, std::array<char*, 2ul> >(int, at::native::bfloat16tofloat32_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda(c10::BFloat16)#1}, std::array<char*, 2ul>)",
+      "mean_ms_per_trace": 4.23277925,
+      "mean_calls_per_trace": 720.0,
+      "mean_us_per_call": 5.878860069444445,
+      "family": "copy_cast"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<8, at::native::FillFunctor<c10::BFloat16>, std::array<char*, 1ul> >(int, at::native::FillFunctor<c10::BFloat16>, std::array<char*, 1ul>)",
+      "mean_ms_per_trace": 4.079417000000005,
+      "mean_calls_per_trace": 720.0,
+      "mean_us_per_call": 5.66585694444445,
+      "family": "other"
+    },
+    {
+      "name": "Cijk_SS_BiasS_HAS_ScaleAlphaVec_PostGSU16_VW1",
+      "mean_ms_per_trace": 4.046445,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 5.915855263157896,
+      "family": "other"
+    },
+    {
+      "name": "_ZN5aiter25swiglu_act_and_mul_kernelIDF16bDF16bLi8EEEvPT0_PKT_i",
+      "mean_ms_per_trace": 3.9462660000000005,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 5.769394736842106,
+      "family": "other"
+    },
+    {
+      "name": "void aiter::grouped_topk_kernel<float, float __vector(4), 1, true, true, false>(float*, float const*, float*, int*, unsigned long, unsigned long, int, int, int, int, float)",
+      "mean_ms_per_trace": 3.8557754999999987,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 5.637098684210525,
+      "family": "moe"
+    },
+    {
+      "name": "void aiter::pa_decode_ps_reduce_hip_kernel<__hip_bfloat16, __hip_bfloat16, __hip_bfloat16, false, 128, 16, 8>(__hip_bfloat16*, float const*, float const*, __hip_bfloat16 const*, __hip_bfloat16 const*, int, int, int, int, int, int, int, int, int, int, int)",
+      "mean_ms_per_trace": 3.8226075000000037,
+      "mean_calls_per_trace": 684.0,
+      "mean_us_per_call": 5.588607456140356,
+      "family": "sparse_attention"
+    },
+    {
+      "name": "void wvSplitK_hf_sml_<__hip_bfloat16, 64, 2, 16, 8, 2, 1>(int, int, int, int, int, int, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16*, int, int)",
+      "mean_ms_per_trace": 3.35082325,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 93.0784236111111,
+      "family": "dense_gemm"
+    },
+    {
+      "name": "_ZN5aiter10minimax_m343minimaxM3QKNormRopeCacheShuffleInsertKernelIDF16bDB8_LN4vllm18Fp8KVCacheDataTypeE1EDF16bLb0ELb0EEEvPKT_PS5_PT2_S7_S7_S7_S7_S7_PKlSC_SC_PT0_SE_SA_PKfSG_fiiiiiiilllli",
+      "mean_ms_per_trace": 2.98865975,
+      "mean_calls_per_trace": 504.0,
+      "mean_us_per_call": 5.929880456349207,
+      "family": "norm_rope_cache"
+    },
+    {
+      "name": "_ZN5aiter26cross_device_reduce_1stageIDF16bLi4ELb0EEEvPNS_8RankDataES2_NS_11RankSignalsEPNS_6SignalEPT_ii",
+      "mean_ms_per_trace": 2.5111432499999995,
+      "mean_calls_per_trace": 48.0,
+      "mean_us_per_call": 52.31548437499999,
+      "family": "collective"
+    },
+    {
+      "name": "kernel_unified_attention_3d_num_query_heads_16_num_queries_per_kv_16_BLOCK_SIZE_128_TILE_SIZE_64_HEAD_SIZE_128_NUM_SEGMENTS_PER_SEQ_128_num_warps_2_waves_per_eu_2_num_stages_2_ALL_DECODE_0_SHUFFLED_KV_CACHE_0_IS_Q_FP8_1_IS_KV_FP8_1",
+      "mean_ms_per_trace": 1.8796017499999997,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 52.21115972222222,
+      "family": "attention"
+    },
+    {
+      "name": "Memcpy DtoD (Device -> Device)",
+      "mean_ms_per_trace": 1.8277447499999993,
+      "mean_calls_per_trace": 408.0,
+      "mean_us_per_call": 4.479766544117645,
+      "family": "memory"
+    },
+    {
+      "name": "void aiter::sparse_attn::pa_sparse_block_topk_kernel<128, 128, 16, 8, 8>(float const*, int*, int const*, int const*, int const*, int const*, int const*, int*, int*, int, int, int, int, int, int, int, int)",
+      "mean_ms_per_trace": 1.749505499999999,
+      "mean_calls_per_trace": 180.0,
+      "mean_us_per_call": 9.719474999999996,
+      "family": "indexer"
+    },
+    {
+      "name": "void aiter::sparse_attn::pa_sparse_block_score_decode<128, 128, 1, 4, 1, 8, false>(unsigned char const*, unsigned char const*, float*, int const*, int const*, int, int, int, int, int, int, int)",
+      "mean_ms_per_trace": 1.6845724999999991,
+      "mean_calls_per_trace": 180.0,
+      "mean_us_per_call": 9.358736111111106,
+      "family": "indexer"
+    },
+    {
+      "name": "ncclDevKernel_Generic_1(ncclDevKernelArgsStorage<4096ul>)",
+      "mean_ms_per_trace": 1.342811,
+      "mean_calls_per_trace": 49.5,
+      "mean_us_per_call": 27.12749494949495,
+      "family": "collective"
+    },
+    {
+      "name": "void wvSplitK_hf_sml_<__hip_bfloat16, 64, 4, 16, 8, 1, 4>(int, int, int, int, int, int, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16*, int, int)",
+      "mean_ms_per_trace": 1.1952282500000002,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 99.60235416666667,
+      "family": "dense_gemm"
+    },
+    {
+      "name": "_ZN5aiter10minimax_m343minimaxM3QKNormRopeCacheShuffleInsertKernelIDF16bDB8_LN4vllm18Fp8KVCacheDataTypeE1ES2_Lb1ELb1EEEvPKT_PS5_PT2_S7_S7_S7_S7_S7_PKlSC_SC_PT0_SE_SA_PKfSG_fiiiiiiilllli",
+      "mean_ms_per_trace": 1.0830895,
+      "mean_calls_per_trace": 180.0,
+      "mean_us_per_call": 6.017163888888889,
+      "family": "norm_rope_cache"
+    },
+    {
+      "name": "_ZN5aiter30allreduce_fusion_kernel_1stageIDF16bDF16bLi4ELb0EEEvPNS_8RankDataENS_11RankSignalsEPNS_6SignalEiPT_S7_PT0_S7_PfiiiifS7_",
+      "mean_ms_per_trace": 0.9133767499999997,
+      "mean_calls_per_trace": 72.0,
+      "mean_us_per_call": 12.685788194444442,
+      "family": "collective"
+    },
+    {
+      "name": "void wvSplitK_hf_sml_<__hip_bfloat16, 64, 3, 16, 8, 2, 4>(int, int, int, int, int, int, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16 const*, __hip_bfloat16*, int, int)",
+      "mean_ms_per_trace": 0.7957127500000001,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 22.103131944444446,
+      "family": "dense_gemm"
+    },
+    {
+      "name": "void at::native::elementwise_kernel_manual_unroll<128, 4, at::native::gpu_kernel_impl<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#4}::operator()() const::{lambda(long)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#4}::operator()() const::{lambda(long)#1} const&)::{lambda(int, bool)#1}>(int, at::native::gpu_kernel_impl<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#4}::operator()() const::{lambda(long)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#4}::operator()() const::{lambda(long)#1} const&)::{lambda(int, bool)#1})",
+      "mean_ms_per_trace": 0.51636975,
+      "mean_calls_per_trace": 96.0,
+      "mean_us_per_call": 5.3788515624999995,
+      "family": "copy_cast"
+    },
+    {
+      "name": "_ZN5aiter24add_rmsnorm_quant_kernelIDF16bDF16bLi256ELi24ELb0ELb0ELb1ELi1EEEvPT0_PT_PfS4_S4_S4_dbiiiiiiibb",
+      "mean_ms_per_trace": 0.42770125,
+      "mean_calls_per_trace": 72.0,
+      "mean_us_per_call": 5.940295138888889,
+      "family": "norm_rope_cache"
+    },
+    {
+      "name": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<c10::BFloat16, at::native::ArgMaxOps<float>, unsigned int, long, 4, 4> >(at::native::ReduceOp<c10::BFloat16, at::native::ArgMaxOps<float>, unsigned int, long, 4, 4>)",
+      "mean_ms_per_trace": 0.4093690000000001,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 11.371361111111113,
+      "family": "other"
+    },
+    {
+      "name": "void vllm::reshape_and_cache_flash_kernel<__hip_bfloat16, unsigned char, (vllm::Fp8KVCacheDataType)1>(__hip_bfloat16 const*, __hip_bfloat16 const*, unsigned char*, unsigned char*, long const*, long, long, long, long, long, int, int, int, float const*, float const*, int)",
+      "mean_ms_per_trace": 0.3832819999999999,
+      "mean_calls_per_trace": 72.0,
+      "mean_us_per_call": 5.32336111111111,
+      "family": "norm_rope_cache"
+    },
+    {
+      "name": "Memset (Device)",
+      "mean_ms_per_trace": 0.3442927500000001,
+      "mean_calls_per_trace": 60.0,
+      "mean_us_per_call": 5.738212500000001,
+      "family": "memory"
+    },
+    {
+      "name": "reduce_segments_num_query_heads_16_TILE_SIZE_64_HEAD_SIZE_128_NUM_SEGMENTS_PER_SEQ_128",
+      "mean_ms_per_trace": 0.321572,
+      "mean_calls_per_trace": 60.0,
+      "mean_us_per_call": 5.359533333333333,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::ArgMaxOps<float>, unsigned int, long, 4, 4> >(at::native::ReduceOp<float, at::native::ArgMaxOps<float>, unsigned int, long, 4, 4>)",
+      "mean_ms_per_trace": 0.30487925,
+      "mean_calls_per_trace": 24.0,
+      "mean_us_per_call": 12.703302083333334,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::elementwise_kernel_manual_unroll<128, 4, at::native::gpu_kernel_impl<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1} const&)::{lambda(int, bool)#1}>(int, at::native::gpu_kernel_impl<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1} const&)::{lambda(int, bool)#1})",
+      "mean_ms_per_trace": 0.26006325,
+      "mean_calls_per_trace": 48.0,
+      "mean_us_per_call": 5.4179843750000005,
+      "family": "copy_cast"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<long>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_add<long>, std::array<char*, 3ul>)",
+      "mean_ms_per_trace": 0.2557339999999999,
+      "mean_calls_per_trace": 48.0,
+      "mean_us_per_call": 5.327791666666665,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1}>(long, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1})",
+      "mean_ms_per_trace": 0.23978149999999998,
+      "mean_calls_per_trace": 60.0,
+      "mean_us_per_call": 3.9963583333333332,
+      "family": "other"
+    },
+    {
+      "name": "kernel_unified_attention_3d_num_query_heads_16_num_queries_per_kv_16_BLOCK_SIZE_128_TILE_SIZE_64_HEAD_SIZE_128_NUM_SEGMENTS_PER_SEQ_128_num_warps_2_waves_per_eu_2_num_stages_2_ALL_DECODE_1_SHUFFLED_KV_CACHE_0_IS_Q_FP8_1_IS_KV_FP8_1",
+      "mean_ms_per_trace": 0.22746725,
+      "mean_calls_per_trace": 24.0,
+      "mean_us_per_call": 9.477802083333334,
+      "family": "attention"
+    },
+    {
+      "name": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_put_kernel_impl<at::native::OpaqueType<2> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_put_kernel_impl<at::native::OpaqueType<2> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1}>(long, at::native::gpu_index_kernel<at::native::index_put_kernel_impl<at::native::OpaqueType<2> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_put_kernel_impl<at::native::OpaqueType<2> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1})",
+      "mean_ms_per_trace": 0.22426475000000004,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 6.229576388888891,
+      "family": "other"
+    },
+    {
+      "name": "triton_poi_fused_3",
+      "mean_ms_per_trace": 0.21975774999999997,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 6.1043819444444445,
+      "family": "other"
+    },
+    {
+      "name": "triton_poi_fused_4",
+      "mean_ms_per_trace": 0.2171555,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 6.032097222222222,
+      "family": "other"
+    },
+    {
+      "name": "triton_poi_fused_0",
+      "mean_ms_per_trace": 0.21491749999999998,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 5.969930555555555,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<2> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<2> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1}>(long, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<2> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<2> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1})",
+      "mean_ms_per_trace": 0.21476575,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 5.965715277777778,
+      "family": "other"
+    },
+    {
+      "name": "triton_poi_fused_1",
+      "mean_ms_per_trace": 0.21203599999999995,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 5.889888888888887,
+      "family": "other"
+    },
+    {
+      "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#4}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#4}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#4}::operator()() const::{lambda(long)#1}>::result_type*)",
+      "mean_ms_per_trace": 0.21047599999999997,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 5.846555555555555,
+      "family": "other"
+    },
+    {
+      "name": "triton_poi_fused_cat_2",
+      "mean_ms_per_trace": 0.20458625000000003,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 5.68295138888889,
+      "family": "other"
+    },
+    {
+      "name": "triton_poi_fused_mul_silu_slice_0",
+      "mean_ms_per_trace": 0.2022755,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 5.618763888888889,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<8, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*, 3ul>)",
+      "mean_ms_per_trace": 0.19340575000000002,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 5.372381944444445,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<int>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_add<int>, std::array<char*, 3ul>)",
+      "mean_ms_per_trace": 0.16714525,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 4.642923611111112,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_contig<at::native::(anonymous namespace)::OpaqueType<2u>, unsigned int, 2, 128, 1>(at::native::(anonymous namespace)::OpaqueType<2u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<2u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+      "mean_ms_per_trace": 0.15290700000000002,
+      "mean_calls_per_trace": 24.0,
+      "mean_us_per_call": 6.371125,
+      "family": "other"
+    },
+    {
+      "name": "void vllm::scaled_fp8_quant_kernel_strided_group_shape<c10::BFloat16, c10::Float8_e4m3fn, true, true>(c10::Float8_e4m3fn*, c10::BFloat16 const*, float const*, int, long, long, int, int, long, long)",
+      "mean_ms_per_trace": 0.1489655,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 4.137930555555555,
+      "family": "quantization"
+    },
+    {
+      "name": "void vllm::minimax_m3_fused_ops::fusedMiniMaxM3QNormRopeKVInsertKernel<c10::BFloat16, __hip_bfloat16, (vllm::Fp8KVCacheDataType)0, c10::BFloat16, false, false, false, false>(c10::BFloat16*, c10::BFloat16*, unsigned char*, c10::BFloat16*, c10::BFloat16 const*, c10::BFloat16 const*, c10::BFloat16 const*, c10::BFloat16 const*, c10::BFloat16 const*, long const*, long const*, long const*, __hip_bfloat16*, c10::BFloat16*, float, float, int, int, int, int, int, int, long, long, long, long)",
+      "mean_ms_per_trace": 0.14748575,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 4.096826388888889,
+      "family": "norm_rope_cache"
+    },
+    {
+      "name": "_swiglu_oai_kernel",
+      "mean_ms_per_trace": 0.14422499999999996,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 4.006249999999999,
+      "family": "other"
+    },
+    {
+      "name": "_ZN5aiter24add_rmsnorm_quant_kernelIDF16bDF16bLi256ELi24ELb1ELb0ELb1ELi1EEEvPT0_PT_PfS4_S4_S4_dbiiiiiiibb",
+      "mean_ms_per_trace": 0.143475,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 3.9854166666666666,
+      "family": "norm_rope_cache"
+    },
+    {
+      "name": "void at::native::vectorized_gather_kernel<16, long>(char*, char*, long*, int, long, long, long, long, bool)",
+      "mean_ms_per_trace": 0.14292725,
+      "mean_calls_per_trace": 24.0,
+      "mean_us_per_call": 5.955302083333334,
+      "family": "other"
+    },
+    {
+      "name": "_ZN5aiter19scaled_quant_kernelIDF16bDB8_EEvPT0_PKT_PKfi",
+      "mean_ms_per_trace": 0.1428445,
+      "mean_calls_per_trace": 36.0,
+      "mean_us_per_call": 3.9679027777777782,
+      "family": "quantization"
+    },
+    {
+      "name": "eagle_step_slot_mapping_metadata_kernel",
+      "mean_ms_per_trace": 0.1420475,
+      "mean_calls_per_trace": 24.0,
+      "mean_us_per_call": 5.918645833333333,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, std::array<char*, 1ul> >(int, at::native::FillFunctor<int>, std::array<char*, 1ul>)",
+      "mean_ms_per_trace": 0.120947,
+      "mean_calls_per_trace": 24.0,
+      "mean_us_per_call": 5.039458333333333,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::_scatter_gather_elementwise_kernel<256, 4, at::native::_cuda_scatter_gather_internal_kernel<true, at::native::OpaqueType<4>, long>::operator()<at::native::TensorAssign>(at::TensorIterator&, long, long, long, at::native::TensorAssign const&)::{lambda(int)#1}>(int, at::native::_cuda_scatter_gather_internal_kernel<true, at::native::OpaqueType<4>, long>::operator()<at::native::TensorAssign>(at::TensorIterator&, long, long, long, at::native::TensorAssign const&)::{lambda(int)#1})",
+      "mean_ms_per_trace": 0.09849725,
+      "mean_calls_per_trace": 24.0,
+      "mean_us_per_call": 4.104052083333333,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::elementwise_kernel_manual_unroll<128, 8, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1} const&)::{lambda(int, bool)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1} const&)::{lambda(int, bool)#1})",
+      "mean_ms_per_trace": 0.07405875,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 6.1715625,
+      "family": "copy_cast"
+    },
+    {
+      "name": "Memcpy HtoD (Host -> Device)",
+      "mean_ms_per_trace": 0.0727985,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 6.066541666666667,
+      "family": "memory"
+    },
+    {
+      "name": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_put_kernel_impl<at::native::OpaqueType<4> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_put_kernel_impl<at::native::OpaqueType<4> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1}>(long, at::native::gpu_index_kernel<at::native::index_put_kernel_impl<at::native::OpaqueType<4> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_put_kernel_impl<at::native::OpaqueType<4> >(at::TensorIterator&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1})",
+      "mean_ms_per_trace": 0.07192875,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 5.994062499999999,
+      "family": "other"
+    },
+    {
+      "name": "_compute_slot_mapping_kernel",
+      "mean_ms_per_trace": 0.0711685,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 5.930708333333333,
+      "family": "other"
+    },
+    {
+      "name": "rejection_greedy_sample_kernel",
+      "mean_ms_per_trace": 0.07061825,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 5.884854166666666,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<8> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<8> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1}>(long, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<8> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<8> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1})",
+      "mean_ms_per_trace": 0.06831875,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 5.693229166666666,
+      "family": "other"
+    },
+    {
+      "name": "eagle_prepare_inputs_padded_kernel",
+      "mean_ms_per_trace": 0.06768874999999999,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 5.640729166666667,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::elementwise_kernel_manual_unroll<128, 8, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespace)::masked_fill_kernel(at::TensorIterator&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16, bool)#1}>(at::TensorIteratorBase&, at::native::(anonymous namespace)::masked_fill_kernel(at::TensorIterator&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16, bool)#1} const&)::{lambda(int, bool)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespace)::masked_fill_kernel(at::TensorIterator&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16, bool)#1}>(at::TensorIteratorBase&, at::native::(anonymous namespace)::masked_fill_kernel(at::TensorIterator&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16, bool)#1} const&)::{lambda(int, bool)#1})",
+      "mean_ms_per_trace": 0.06282825,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 5.2356875,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::(anonymous namespace)::indexSelectSmallIndex<c10::BFloat16, long, unsigned int, 2, 2, -2>(at::cuda::detail::TensorInfo<c10::BFloat16, unsigned int>, at::cuda::detail::TensorInfo<c10::BFloat16 const, unsigned int>, at::cuda::detail::TensorInfo<long const, unsigned int>, int, int, unsigned int, long)",
+      "mean_ms_per_trace": 0.05291825,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 4.409854166666666,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::unrolled_elementwise_kernel<at::native::FillFunctor<int>, std::array<char*, 1ul>, 4, TrivialOffsetCalculator<0, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, at::native::FillFunctor<int>, std::array<char*, 1ul>, TrivialOffsetCalculator<0, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast)",
+      "mean_ms_per_trace": 0.052589000000000004,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 4.382416666666667,
+      "family": "quantization"
+    },
+    {
+      "name": "triton_poi_fused_add_bitwise_and_clamp_copy__ge_gt_index_where_0",
+      "mean_ms_per_trace": 0.051748749999999996,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 4.3123958333333325,
+      "family": "other"
+    },
+    {
+      "name": "_gemma_rmsnorm_kernel",
+      "mean_ms_per_trace": 0.050308499999999985,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 4.192374999999999,
+      "family": "norm_rope_cache"
+    },
+    {
+      "name": "triton_poi_fused_add_bitwise_and_clamp_ge_gt_index_where_1",
+      "mean_ms_per_trace": 0.04990825,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 4.159020833333334,
+      "family": "other"
+    },
+    {
+      "name": "triton_poi_fused_add_bitwise_and_bitwise_not_bitwise_or_ge_lt_mul_sub_0",
+      "mean_ms_per_trace": 0.048439249999999996,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 4.036604166666666,
+      "family": "other"
+    },
+    {
+      "name": "eagle_prepare_next_token_padded_kernel",
+      "mean_ms_per_trace": 0.0469785,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 3.914875,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::unrolled_elementwise_kernel<at::native::CUDAFunctor_add<int>, std::array<char*, 3ul>, 4, TrivialOffsetCalculator<2, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, at::native::CUDAFunctor_add<int>, std::array<char*, 3ul>, TrivialOffsetCalculator<2, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast)",
+      "mean_ms_per_trace": 0.04627825,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 3.856520833333333,
+      "family": "quantization"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+      "mean_ms_per_trace": 0.045869,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 3.822416666666667,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_contig<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 2, 128, 1>(at::native::(anonymous namespace)::OpaqueType<8u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<8u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+      "mean_ms_per_trace": 0.04489875,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 3.7415625,
+      "family": "other"
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+      "mean_ms_per_trace": 0.040518,
+      "mean_calls_per_trace": 12.0,
+      "mean_us_per_call": 3.3765,
+      "family": "other"
+    }
+  ]
+}

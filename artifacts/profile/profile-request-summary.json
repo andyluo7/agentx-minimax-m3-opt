@@ -1,0 +1,19 @@
+{
+  "observed_warm_prompt_tokens": 262318,
+  "profile_seconds": 2.4190413749893196,
+  "profile_usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 262318,
+    "prompt_tokens_details": {
+      "cached_tokens": 262144,
+      "created_cache_tokens": 128,
+      "multimodal_tokens": null
+    },
+    "total_tokens": 262446
+  },
+  "status": "PASS",
+  "target_prompt_tokens": 262144,
+  "warm_completion_tokens": 8,
+  "warm_prompt_tokens": 262144,
+  "warm_seconds": 49.669115286989836
+}

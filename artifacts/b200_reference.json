@@ -1,0 +1,34 @@
+{
+  "source": {
+    "repository": "SemiAnalysisAI/InferenceX",
+    "run_id": 31833401868,
+    "head_sha": "5c3e65cf4c59db9966a9b16eb0035702bc5cf692",
+    "vllm_version": "0.27.2rc1.dev77+gac7509e2b",
+    "benchmark_duration_seconds": 3600,
+    "warmup_requests_per_lane": 10,
+    "c1_tensor_parallel_size": 4,
+    "c1_artifact": "minimaxm3_tp4_conc1_kvnone_spec-mtp_fp4_vllm_tp4-pp1-dcp1-pcp1-ep1-dpafalse_disagg-false_spec-mtp_conc1_b200-dgxc_09.json",
+    "comparable_qos_tensor_parallel_size": 4,
+    "comparable_qos_artifact": "minimaxm3_tp4_conc32_kvdram-vllm-simple_spec-mtp_fp4_vllm_tp4-pp1-dcp1-pcp1-ep1-dpafalse_disagg-false_spec-mtp_conc32_b200-dgxc_07.json",
+    "comparable_qos_kv_offload_backend": "vllm-simple"
+  },
+  "ratio_target": 0.7,
+  "primary_gates": {
+    "c1": {
+      "b200_total_throughput_per_chip_tps": 5251.611,
+      "b200_p90_raw_interactivity_tps_per_user": 334.857,
+      "b200_p90_normalized_interactivity_tps_per_user": 108.207,
+      "mi355x_min_total_throughput_per_chip_tps": 3676.1277,
+      "mi355x_min_p90_raw_interactivity_tps_per_user": 234.3999,
+      "mi355x_max_p90_tpot_ms": 4.266217,
+      "mi355x_min_p90_normalized_interactivity_tps_per_user": 75.7449
+    },
+    "comparable_qos": {
+      "b200_concurrency": 32,
+      "b200_normalized_interactivity_tps_per_user": 28.655,
+      "b200_total_throughput_per_chip_tps": 44143.896,
+      "mi355x_min_normalized_interactivity_tps_per_user": 28.655,
+      "mi355x_min_total_throughput_per_chip_tps": 30900.7272
+    }
+  }
+}

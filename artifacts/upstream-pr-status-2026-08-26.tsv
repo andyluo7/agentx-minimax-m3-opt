@@ -1,0 +1,16 @@
+group	repository	pr	state	draft	merge_state	review	head	updated	url	title
+focused	vllm-project/vllm	53821	OPEN	true	BLOCKED	REVIEW_REQUIRED	17cccfedac8a	2026-08-26T04:53:04Z	https://github.com/vllm-project/vllm/pull/53821	[Bugfix][ROCm] Preserve unified-attention query metadata in CUDA graphs
+focused	vllm-project/vllm	53827	OPEN	true	BLOCKED	REVIEW_REQUIRED	641376f8f069	2026-08-26T03:16:17Z	https://github.com/vllm-project/vllm/pull/53827	[Spec Decode] Add bounded attention for Llama EAGLE3 drafts
+focused	ROCm/aiter	5004	OPEN	true	BLOCKED		adcda0d3a8a6	2026-08-26T04:36:44Z	https://github.com/ROCm/aiter/pull/5004	[Triton][Perf][gfx950] Optimize sliding-window unified-attention decode
+focused	vllm-project/vllm	53833	OPEN	true	BLOCKED	REVIEW_REQUIRED	2cb93a03ebf8	2026-08-26T04:55:16Z	https://github.com/vllm-project/vllm/pull/53833	[ROCm][Perf] Fuse MiniMax-M3 sparse cache insertion with AITER
+dependency	vllm-project/vllm	53695	OPEN	false	BLOCKED	REVIEW_REQUIRED	9e7aa17a16eb	2026-08-26T04:49:20Z	https://github.com/vllm-project/vllm/pull/53695	[ROCm][Feature] Support KV connectors with ROCM_AITER_UNIFIED_ATTN
+dependency	ROCm/aiter	4813	OPEN	true	DIRTY		266922c417ce	2026-08-26T04:45:55Z	https://github.com/ROCm/aiter/pull/4813	Fused MiniMaxM3 QKNorm+RoPE+CacheInsert
+dependency	vllm-project/vllm	52849	OPEN	false	BLOCKED	APPROVED	148cce51cd75	2026-08-25T22:58:40Z	https://github.com/vllm-project/vllm/pull/52849	[ROCm][PERF] Enable AITER PA gluon decode for MiniMax-M3 MTP and dense layers
+dependency	vllm-project/vllm	52664	OPEN	true	BLOCKED	REVIEW_REQUIRED	92b66b2bdf03	2026-08-25T20:40:59Z	https://github.com/vllm-project/vllm/pull/52664	[Performance][ROCm]  Integrate aiter indexer scoring and top-k kernels into MiniMax-M3 sparse attention path
+dependency	ROCm/aiter	4787	OPEN	false	BLOCKED		cb3c7a628645	2026-08-25T14:53:47Z	https://github.com/ROCm/aiter/pull/4787	[HIP] [JIT] [gfx950] Optimize Minimax M3 scoring & top-k kernels
+dependency	vllm-project/vllm	49170	OPEN	false	DIRTY	REVIEW_REQUIRED	2de511e91424	2026-07-28T23:09:31Z	https://github.com/vllm-project/vllm/pull/49170	[ROCm] Added warmup for AITER unified attention
+dependency	vllm-project/vllm	47270	OPEN	true	BLOCKED	REVIEW_REQUIRED	f53708556e0f	2026-08-20T01:05:02Z	https://github.com/vllm-project/vllm/pull/47270	[ROCm][MiniMax-M3] Fuse input-side all-reduce + RMSNorm in the AMD decoder
+dependency	ROCm/aiter	4918	MERGED	false	UNKNOWN	APPROVED	c76ca13f3625	2026-08-25T16:56:51Z	https://github.com/ROCm/aiter/pull/4918	[Triton/Gluon] Retune unified attention configs for gfx950
+alternative	vllm-project/vllm	53448	OPEN	true	BLOCKED	REVIEW_REQUIRED	d2b3032f971f	2026-08-23T08:19:55Z	https://github.com/vllm-project/vllm/pull/53448	[ROCm][Perf] Speed up the lightning indexer's score and top-k k…
+alternative	vllm-project/vllm	52668	OPEN	true	BLOCKED	REVIEW_REQUIRED	9c083667f930	2026-08-21T01:44:51Z	https://github.com/vllm-project/vllm/pull/52668	[ROCm][Perf] Add a bf16x3 router GEMM for fp32 gate weights
+superseded	SemiAnalysisAI/InferenceX	2726	CLOSED	true	DIRTY		e6b9f572b0ae	2026-08-25T21:07:42Z	https://github.com/SemiAnalysisAI/InferenceX/pull/2726	Has patches, which is not first class user experience and not allowed in inferenceX

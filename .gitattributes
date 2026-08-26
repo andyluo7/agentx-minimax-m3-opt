@@ -1,0 +1,4 @@
+*.jsonl -diff
+*.log -diff
+*.png binary
+*.pdf binary
