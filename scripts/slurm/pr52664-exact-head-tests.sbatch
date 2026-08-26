@@ -54,7 +54,23 @@ date -Is
 hostname
 printf 'vllm_sha=%s\naiter_sha=%s\nimage=%s\n' \
     "$vllm_sha" "$aiter_sha" "$image"
-rocm-smi --showproductname --showuniqueid --showmeminfo vram
+if command -v rocm-smi >/dev/null 2>&1; then
+    rocm-smi --showproductname --showuniqueid --showmeminfo vram
+elif [[ -x /opt/rocm/bin/rocm-smi ]]; then
+    /opt/rocm/bin/rocm-smi --showproductname --showuniqueid --showmeminfo vram
+else
+    echo "host rocm-smi unavailable; recording DRM product and VRAM state"
+    for product_file in /sys/class/drm/card*/device/product_name; do
+        [[ -r "$product_file" ]] || continue
+        printf '%s ' "$product_file"
+        cat "$product_file"
+    done
+    for used_file in /sys/class/drm/card*/device/mem_info_vram_used; do
+        [[ -r "$used_file" ]] || continue
+        printf '%s ' "$used_file"
+        cat "$used_file"
+    done
+fi
 
 # The single-quoted command is expanded by the container shell from env above.
 # shellcheck disable=SC2016

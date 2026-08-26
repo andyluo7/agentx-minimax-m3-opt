@@ -116,7 +116,7 @@ f696ffab2aea69986a04d96234817e8df566d8789416bed6b9d360fa862d1dd1  ./scripts/hist
 1b9d95825907bd8e6e1574c2c8d6b08571f3ac6f1cc26678e8f81f38c8e3d5d9  ./scripts/historical/submit-full-indexer-c15-rerun-v23.sh
 2758aed1d5d31f52c2bad88b56bc8ec654ee4e521def3ed595206efa0bdd8609  ./scripts/refresh-pr-status.sh
 3ba9ee7ab3de1777b73544a65e2576497f652f247a346f29a9a12930dddc7112  ./scripts/run-agentx.sh
-d3a899d745d831f267ee442a64ffe9137f51aefd5c613f920f0cb0e4b2963d79  ./scripts/slurm/pr52664-exact-head-tests.sbatch
+c58603bd50c923d5d8db8ed27010edcf6f0b5c6b30bdfbce276eab092fc3b36a  ./scripts/slurm/pr52664-exact-head-tests.sbatch
 5da25438db968ed8246edc79895fd09486e42f055129fdbeafacc4de914785e5  ./scripts/slurm/run-agentx.sbatch
 5b1a90bc80c84ce87707038e1dd3cc7b7525a1d2d23d600f0314a3a6478d8506  ./scripts/submit-full-indexer-complete-curve.sh
 eaae0e6d6b44104a15e63d69433f9aa997131d804a9c25a5c72f4922e7e5e09b  ./scripts/submit-gsm8k.sh
