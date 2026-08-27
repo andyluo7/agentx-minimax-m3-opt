@@ -47,6 +47,8 @@ than synthetic acceptance. The preserved 1,319/1,319 GSM8K run scored
 - `artifacts/correctness/gsm8k-full-k4/`: full GSM8K result, all sample records,
   exact server command, logs, and environment metadata.
 - `artifacts/profile/`: repaired long-context trace summary and profile command.
+- `artifacts/current-head/pr52664/`: exact-head focused test evidence and the
+  in-progress patch-free migration validation record.
 - `artifacts/plots/`: regenerated MI355X versus public MI355X/B200 Pareto chart.
 - `recipes/inferencex/`: self-contained historical InferenceX recipe bundle for
   the pinned vLLM v0.27.1 ROCm image. It includes the archived runtime patches
@@ -60,6 +62,8 @@ than synthetic acceptance. The preserved 1,319/1,319 GSM8K run scored
 - `docs/PR_52664_REVIEW_PACKET.md`: exact AITER gates, focused tests,
   non-duplication analysis, DCO blockers, and current-head MI355X validation
   requirements for vLLM #52664.
+- `docs/PR_52664_PROPOSED_BODY.md`: concise, community-compliant PR description
+  for the human submitter to review and post after the final gates pass.
 - `docs/OPTIMIZATIONS.md`: explanation of the winning stack and rejected paths.
 - `SHA256SUMS`: integrity manifest for every tracked evidence file.
 

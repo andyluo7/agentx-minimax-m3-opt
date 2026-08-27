@@ -1,0 +1,17 @@
+pyxis: importing docker image: vllm/vllm-openai-rocm:v0.27.1
+pyxis: imported docker image: vllm/vllm-openai-rocm:v0.27.1
+Using CPython 3.12.13 interpreter at: /usr/bin/python
+Creating virtual environment at: /tmp/pr52664-exact-head-tests-1604/.venv
+Activate with: source /tmp/pr52664-exact-head-tests-1604/.venv/bin/activate
+Using Python 3.12.13 environment at: /tmp/pr52664-exact-head-tests-1604/.venv
+Resolved 1 package in 57ms
+Prepared 1 package in 5ms
+Installed 1 package in 10ms
+ + tblib==3.1.0
+[aiter] [pid=367447 pname=MainProcess] start build [module_aiter_core] under /tmp/pr52664-exact-head-tests-1604/home/.aiter/jit/build/module_aiter_core
+[aiter] Current hipcc not support: -mllvm -amdgpu-coerce-illegal-types=1, skip it.
+[aiter] [pid=367447 pname=MainProcess] [32mfinish build [module_aiter_core], cost 8.8s [0m
+[aiter] import [module_aiter_core] under /tmp/pr52664-exact-head-tests-1604/home/.aiter/jit/module_aiter_core.so
+/shared/data/R7N/andy_luo_3v7/minimaxm3-agentx/upstream-validation/vllm-ee5f001be645/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+No module named 'vllm._version'
+  from .version import __version__, __version_tuple__  # isort:skip

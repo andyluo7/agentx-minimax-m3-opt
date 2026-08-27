@@ -33,6 +33,13 @@ separate from the synthetic-acceptance performance curve.
 server command. The multi-gigabyte raw PyTorch trace is omitted; the summary
 retains categorized kernel time and per-rank accounting.
 
+## Current-head PR validation
+
+`artifacts/current-head/pr52664/` records the exact source stack and focused
+MI355X pytest logs for the cleaned vLLM #52664 helper. End-to-end smoke, full
+GSM8K, C1, and C32-offload artifacts are added only after their acceptance
+checks pass; this directory is separate from the historical accepted curve.
+
 ## Public comparison inputs
 
 - `artifacts/b200_reference.json` preserves the matched B200 reference used by

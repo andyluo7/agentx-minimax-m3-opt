@@ -48,6 +48,7 @@ submit_run() {
         VLLM_AITER_UNIFIED_ATTN_OVERLAY="$vllm_root/vllm/v1/attention/backends" \
         PYTHONPATH="$aiter_root" \
         AITER_META_DIR="$aiter_root" \
+        VLLM_SOURCE_ROOT="$vllm_root" \
         VLLM_EXACT_SOURCE_SHA="$pr_sha" \
         VLLM_INTEGRATION_SOURCE_SHA="$integration_sha" \
         VLLM_DEPENDENCY_HEADS="$dependency_heads" \

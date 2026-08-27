@@ -99,12 +99,15 @@ The invalid #52849 commits are:
 - `c2b78e442d27`: no sign-off; and
 - `f587f84faa28`: malformed `Signed-off-by: <>`.
 
-The authors must rewrite or attest their own commits. A later empty signed
+The authors must rewrite and sign their own commits. A later empty signed
 commit does not repair DCO, and another contributor must not forge their
-sign-offs. The helper's single integration commit has a valid Andy Luo sign-off
-and explicit Cursor/OpenAI Codex attribution; it removes #52664's own unsigned
-commit from the proposed history, but #52849 still has to repair its history or
-merge before #52664 can become DCO-clean against `main`.
+sign-offs. vLLM has no `.github/dco.yml` enabling remediation commits, so the
+default DCO App behavior requires signed rewrites of the failing commits (or a
+maintainer override, which is not the requested repair). The helper's single
+integration commit has a valid Andy Luo sign-off and explicit Cursor/OpenAI
+Codex attribution; it removes #52664's own unsigned commit from the proposed
+history, but #52849 still has to repair its history or merge before #52664 can
+become DCO-clean against `main`.
 
 ## Non-duplication
 
@@ -131,19 +134,21 @@ The focused test and benchmark chain is pinned as follows:
 The dependency-gated Slurm chain is:
 
 1. focused exact-head pytest: job 1604, passed;
-2. eight-sample real-target smoke: job 1611, queued for node 1;
-3. full 1,319-sample GSM8K: job 1612, `afterok:1611`;
-4. matched 3,600-second AgentX C1: job 1613, `afterok:1612`; and
-5. matched 3,600-second AgentX C32 with vLLM simple CPU KV offload: job 1614,
-   `afterok:1613`.
+2. digest-pinned official-image bootstrap on node 3: job 1648;
+3. eight-sample real-target smoke: job 1649, `afterok:1648`;
+4. full 1,319-sample GSM8K: job 1650, `afterok:1649`;
+5. matched 3,600-second AgentX C1: job 1651, `afterok:1650`; and
+6. matched 3,600-second AgentX C32 with vLLM simple CPU KV offload: job 1652,
+   `afterok:1651`.
 
 Every promoted result must preserve source, image, config, effective command,
 request accounting, raw artifacts, exit status, and warmup exclusion. It must
 also have zero measured-phase JIT, zero GPU/KFD faults, and clean teardown.
 
-This is current-source validation through exact Python/AITER source overlays on
-the pinned v0.27.1 precompiled runtime. It is not evidence for an official
-patch-free release image.
+This is current-source validation: every Python module comes from integration
+head `720d05565afb`, while only ABI-matched compiled extension modules come from
+the digest-pinned official v0.27.1 image. The PR stack is Python-only. This is
+not evidence for an official patch-free release image.
 
 ## AI-assisted contribution checklist
 

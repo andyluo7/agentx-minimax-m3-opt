@@ -1,0 +1,55 @@
+2026-08-26T18:43:23-05:00
+vultr-mi355x-3
+vllm_sha=ee5f001be6454bc9616dcf0db9e4276efe1387c6
+aiter_sha=cb3c7a628645dd9b03610d36b543d39225e2cde5
+image=vllm/vllm-openai-rocm:v0.27.1
+host rocm-smi unavailable; recording DRM product and VRAM state
+/sys/class/drm/card1/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card17/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card25/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card33/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card41/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card49/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card57/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card9/device/product_name AMD Instinct MI355 OAM
+/sys/class/drm/card1/device/mem_info_vram_used 297754624
+/sys/class/drm/card17/device/mem_info_vram_used 297754624
+/sys/class/drm/card25/device/mem_info_vram_used 297754624
+/sys/class/drm/card33/device/mem_info_vram_used 297754624
+/sys/class/drm/card41/device/mem_info_vram_used 297754624
+/sys/class/drm/card49/device/mem_info_vram_used 297754624
+/sys/class/drm/card57/device/mem_info_vram_used 297754624
+/sys/class/drm/card9/device/mem_info_vram_used 297766912
+WARNING 08-26 18:44:25 [rocm.py:47] Failed to import from vllm._C with ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 08-26 18:44:25 [rocm.py:53] Failed to import from vllm._C_stable_libtorch with ModuleNotFoundError("No module named 'vllm._C_stable_libtorch'")
+WARNING 08-26 18:44:25 [rocm.py:58] Failed to import from vllm._rocm_C with ModuleNotFoundError("No module named 'vllm._rocm_C'")
+WARNING 08-26 18:44:25 [rocm.py:134] Using CUDA_VISIBLE_DEVICES on ROCm is deprecated and support will be removed in vLLM v0.26.0. Please use HIP_VISIBLE_DEVICES instead.
+vllm_module=/shared/data/R7N/andy_luo_3v7/minimaxm3-agentx/upstream-validation/vllm-ee5f001be645/vllm/__init__.py
+aiter_module=/shared/data/R7N/andy_luo_3v7/minimaxm3-agentx/upstream-validation/aiter-cb3c7a628645/aiter/__init__.py
+...................                                                      [100%]
+=============================== warnings summary ===============================
+../shared/data/R7N/andy_luo_3v7/minimaxm3-agentx/upstream-validation/vllm-ee5f001be645/vllm/__init__.py:7
+  /shared/data/R7N/andy_luo_3v7/minimaxm3-agentx/upstream-validation/vllm-ee5f001be645/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+  No module named 'vllm._version'
+    from .version import __version__, __version_tuple__  # isort:skip
+
+../usr/local/lib/python3.12/dist-packages/torch/jit/_script.py:365: 14 warnings
+  /usr/local/lib/python3.12/dist-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+19 passed, 15 warnings in 6.75s
+....                                                                     [100%]
+=============================== warnings summary ===============================
+../shared/data/R7N/andy_luo_3v7/minimaxm3-agentx/upstream-validation/vllm-ee5f001be645/vllm/__init__.py:7
+  /shared/data/R7N/andy_luo_3v7/minimaxm3-agentx/upstream-validation/vllm-ee5f001be645/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+  No module named 'vllm._version'
+    from .version import __version__, __version_tuple__  # isort:skip
+
+../usr/local/lib/python3.12/dist-packages/torch/jit/_script.py:365: 14 warnings
+  /usr/local/lib/python3.12/dist-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+4 passed, 58 deselected, 15 warnings in 18.45s
+2026-08-26T18:45:21-05:00

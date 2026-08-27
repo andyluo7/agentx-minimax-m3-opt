@@ -304,6 +304,13 @@ fi
     printf 'vllm_exact_source_sha=%s\n' "${VLLM_EXACT_SOURCE_SHA:-none}"
     printf 'vllm_integration_source_sha=%s\n' \
         "${VLLM_INTEGRATION_SOURCE_SHA:-none}"
+    printf 'vllm_python_source_root=%s\n' "${VLLM_SOURCE_ROOT:-image-package}"
+    if [[ -n "${VLLM_SOURCE_ROOT:-}" ]]; then
+        printf 'vllm_runtime_assembly=%s\n' \
+            'exact-source-python-plus-pinned-image-extensions'
+    else
+        printf 'vllm_runtime_assembly=%s\n' 'pinned-image-package'
+    fi
     printf 'vllm_dependency_heads=%s\n' "${VLLM_DEPENDENCY_HEADS:-none}"
     printf 'aiter_exact_source_sha=%s\n' "${AITER_EXACT_SOURCE_SHA:-none}"
     printf 'model_revision=%s\n' "$MODEL_REVISION"
@@ -430,6 +437,7 @@ for optional_key in \
     AITER_CONFIG_FMOE \
     INDEXER_KV_DTYPE KV_CACHE_DTYPE VLLM_USE_BREAKABLE_CUDAGRAPH \
     AITER_SPARSE_PRECOMPILE MAX_MODEL_LEN \
+    VLLM_SOURCE_ROOT \
     VLLM_MINIMAX_M3_FUSED_CACHE_INSERT PYTHONPATH AITER_META_DIR \
     VLLM_EXACT_SOURCE_SHA VLLM_INTEGRATION_SOURCE_SHA \
     VLLM_DEPENDENCY_HEADS AITER_EXACT_SOURCE_SHA \
